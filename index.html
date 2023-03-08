@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameDiv">
+        <h1 class="gameText" id="playerText">Player action: </h1>
+       
+        <button class="choiceBtn">ROCK</button>
+        <button class="choiceBtn">PAPER</button>
+        <button class="choiceBtn">SCISSORS</button>
+    </div>
+
+<body>
+ <h1 class="gameText" id="computerText">Computer respond: </h1>
+        <h1 class="gameText" id="resultText">Result: </h1>
+</body>
+
+    <script>
+const playerText = document.querySelector("#playerText");
+const computerText = document.querySelector("#computerText");
+const resultText = document.querySelector("#resultText");
+const choiceBtns = document.querySelectorAll(".choiceBtn");
+let player;
+let computer;
+let result;
+
+choiceBtns.forEach(button => button.addEventListener("click", () => {
+
+    player = button.textContent;
+    computerTurn();
+    playerText.textContent = `Player action: ${player}`;
+    computerText.textContent = `Computer respond: ${computer}`;
+    resultText.textContent = checkWinner();
+}));
+
+function computerTurn(){
+
+    const randNum = Math.floor(Math.random() * 3) + 1;
+
+    switch(randNum){
+      case 1:
+        computer = "ROCK";
+        break;
+      case 2:
+        computer = "PAPER";
+        break;
+      case 3:
+        computer = "SCISSORS";
+        break;
+    }
+}
+function checkWinner(){
+    if(player == computer){
+      return "Draw!";
+    }
+    else if(computer == "ROCK"){
+      return (player == "PAPER") ? "Yeah! You Win it :)" : "Sorry! You Lose :( Try Again!"
+    }
+    else if(computer == "PAPER"){
+      return (player == "SCISSORS") ? "Yeah! You Win it :)" : "Sorry! You Lose :( Try Again!"
+    }
+    else if(computer == "SCISSORS"){
+      return (player == "ROCK") ? "Yeah! You Win it :)" : "Sorry! You Lose :( Try Again!"
+    }
+}
+</script>
+</body>
+</html>
+
